@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --km-fg: rgba(255, 255, 255, 0.96);
+    --km-muted: rgba(255, 255, 255, 0.72);
+    --km-surface: rgba(255, 255, 255, 0.10);
+    --km-surface-strong: rgba(255, 255, 255, 0.14);
+    --km-ring: rgba(255, 255, 255, 0.10);
+    --km-grid-dot: rgba(255, 255, 255, 0.10);
+    --km-bg:
+      radial-gradient(1200px 720px at 18% 10%, rgba(59, 130, 246, 0.22), transparent 60%),
+      radial-gradient(900px 650px at 82% 18%, rgba(168, 85, 247, 0.18), transparent 62%),
+      radial-gradient(900px 700px at 30% 85%, rgba(34, 211, 238, 0.16), transparent 64%),
+      linear-gradient(180deg, #030712 0%, #050b1a 55%, #020617 100%);
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --km-fg: rgba(9, 9, 11, 0.94);
+    --km-muted: rgba(9, 9, 11, 0.62);
+    --km-surface: rgba(0, 0, 0, 0.04);
+    --km-surface-strong: rgba(0, 0, 0, 0.06);
+    --km-ring: rgba(0, 0, 0, 0.10);
+    --km-grid-dot: rgba(15, 23, 42, 0.10);
+    --km-bg: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #030712;
+  }
+
+  body {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+      Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+    color: var(--km-fg);
+    background: var(--km-bg);
+  }
+
+  .km-fun-title {
+    font-family: Fredoka, Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+      Helvetica, Arial;
+    letter-spacing: -0.02em;
+  }
+
+  .km-fun-lab {
+    color: #0f172a;
+  }
+
+  ::selection {
+    @apply bg-white text-zinc-950;
+  }
+}
+
+@layer utilities {
+  .grid-fade {
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--km-grid-dot) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  @keyframes grid-drift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 240px 180px;
+    }
+  }
+
+  .grid-drift {
+    animation: grid-drift 22s linear infinite;
+    will-change: background-position;
+  }
+}
