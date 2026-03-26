@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float } from '@react-three/drei'
 import type { Mesh } from 'three'
-import { useAppSettings } from '../../app/useAppSettings'
 
 /* Sürekli dönen + Float ile yüzen şekil */
 function RotatingShape({
@@ -149,8 +148,6 @@ function HeroShapes({ isDark }: { isDark: boolean }) {
 }
 
 export function HeroGeometry3D() {
-  const { theme } = useAppSettings()
-
   return (
     <div className="pointer-events-none h-[480px] w-full">
       <Canvas
@@ -160,7 +157,7 @@ export function HeroGeometry3D() {
         <ambientLight intensity={1.0} />
         <directionalLight position={[6, 5, 8]} intensity={1.4} />
         <pointLight position={[-4, -3, 4]} intensity={0.6} color="#818cf8" />
-        <HeroShapes isDark={theme === 'dark'} />
+        <HeroShapes isDark={true} />
       </Canvas>
     </div>
   )

@@ -2,8 +2,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Float, Line, Text } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
-import { useAppSettings } from '../../app/useAppSettings'
-
 function AnimatedFunctionLine({
   freq = 0.85,
   amp = 1.2,
@@ -182,45 +180,34 @@ function FloatingSymbols({ color }: { color: string }) {
   )
 }
 
+const INK   = '#ffffff'
+const GRID_A = '#1f2937'
+const GRID_B = '#111827'
+
 export function HomeDynamicBackground3D({
   className = '',
 }: {
   className?: string
 }) {
-  const { theme } = useAppSettings()
-  const isLight = theme === 'light'
-  const ink = isLight ? '#0f172a' : '#ffffff'
-  const gridA = isLight ? '#e5e7eb' : '#1f2937'
-  const gridB = isLight ? '#f3f4f6' : '#111827'
-
   return (
     <div className={`pointer-events-none fixed inset-0 -z-10 ${className}`}>
-      {isLight ? (
-        <>
-          <div className="absolute inset-0 bg-white" />
-          <div className="absolute inset-0 grid-fade grid-drift opacity-[0.04]" />
-        </>
-      ) : (
-        <>
-          <div className="absolute inset-0 bg-[radial-gradient(1200px_760px_at_16%_8%,rgba(59,130,246,0.22),transparent_62%),radial-gradient(950px_720px_at_84%_14%,rgba(168,85,247,0.18),transparent_64%),linear-gradient(180deg,#030712_0%,#050b1a_55%,#020617_100%)]" />
-          <div className="absolute inset-0 grid-fade grid-drift opacity-[0.10]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/15 to-black/30" />
-        </>
-      )}
+      <div className="absolute inset-0 bg-[radial-gradient(1200px_760px_at_16%_8%,rgba(59,130,246,0.22),transparent_62%),radial-gradient(950px_720px_at_84%_14%,rgba(168,85,247,0.18),transparent_64%),linear-gradient(180deg,#030712_0%,#050b1a_55%,#020617_100%)]" />
+      <div className="absolute inset-0 grid-fade grid-drift opacity-[0.10]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/15 to-black/30" />
 
       <div className="absolute inset-0 opacity-[0.46]">
         <Canvas camera={{ position: [0, 0, 12], fov: 45 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}>
           <ambientLight intensity={0.85} />
           <directionalLight position={[8, 6, 12]} intensity={1.25} />
-          <Line points={[[-8, 0, 0], [8, 0, 0]]} color={ink} lineWidth={1} />
-          <Line points={[[0, -4.8, 0], [0, 4.8, 0]]} color={ink} lineWidth={1} />
-          <gridHelper args={[28, 28, gridA, gridB]} position={[0, 0, -0.35]} />
-          <AnimatedFunctionLine color={ink} freq={0.82} amp={1.45} speed={0.95} z={0.16} opacity={0.85} />
-          <AnimatedFunctionLine color={ink} freq={1.05} amp={0.95} speed={1.15} z={0.12} opacity={0.7} />
-          <AnimatedFunctionLine color={ink} freq={0.55} amp={0.65} speed={0.75} z={0.08} opacity={0.55} />
-          <AnimatedFunctionLine color={ink} freq={1.4} amp={0.5} speed={1.35} z={0.06} opacity={0.42} />
-          <ManyShapes color={ink} />
-          <FloatingSymbols color={ink} />
+          <Line points={[[-8, 0, 0], [8, 0, 0]]} color={INK} lineWidth={1} />
+          <Line points={[[0, -4.8, 0], [0, 4.8, 0]]} color={INK} lineWidth={1} />
+          <gridHelper args={[28, 28, GRID_A, GRID_B]} position={[0, 0, -0.35]} />
+          <AnimatedFunctionLine color={INK} freq={0.82} amp={1.45} speed={0.95} z={0.16} opacity={0.85} />
+          <AnimatedFunctionLine color={INK} freq={1.05} amp={0.95} speed={1.15} z={0.12} opacity={0.7} />
+          <AnimatedFunctionLine color={INK} freq={0.55} amp={0.65} speed={0.75} z={0.08} opacity={0.55} />
+          <AnimatedFunctionLine color={INK} freq={1.4} amp={0.5} speed={1.35} z={0.06} opacity={0.42} />
+          <ManyShapes color={INK} />
+          <FloatingSymbols color={INK} />
         </Canvas>
       </div>
     </div>

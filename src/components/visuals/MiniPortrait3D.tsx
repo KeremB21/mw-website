@@ -2,8 +2,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Float } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
-import { useAppSettings } from '../../app/useAppSettings'
-
 function AvatarCore({ ink }: { ink: string }) {
   const group = useRef<THREE.Group>(null)
   const mat = useMemo(
@@ -38,8 +36,7 @@ function AvatarCore({ ink }: { ink: string }) {
 }
 
 export function MiniPortrait3D({ className = '' }: { className?: string }) {
-  const { theme } = useAppSettings()
-  const ink = theme === 'light' ? '#0f172a' : '#ffffff'
+  const ink = '#ffffff'
 
   return (
     <div

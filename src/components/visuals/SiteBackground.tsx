@@ -3,8 +3,6 @@ import { Line } from '@react-three/drei'
 import * as THREE from 'three'
 import { useMemo, useRef } from 'react'
 import { MathParticles } from './MathParticles'
-import { useAppSettings } from '../../app/useAppSettings'
-
 function Axes() {
   return (
     <>
@@ -92,22 +90,11 @@ function RotatingShapeCluster() {
 }
 
 export function SiteBackground() {
-  const { theme } = useAppSettings()
-  const isLight = theme === 'light'
   return (
     <div className="pointer-events-none fixed inset-0 -z-20">
-      {isLight ? (
-        <>
-          <div className="absolute inset-0 bg-white" />
-          <div className="absolute inset-0 grid-fade grid-drift opacity-[0.04]" />
-        </>
-      ) : (
-        <>
-          <div className="absolute inset-0 bg-[radial-gradient(1200px_700px_at_18%_10%,rgba(59,130,246,0.22),transparent_60%),radial-gradient(900px_650px_at_82%_18%,rgba(168,85,247,0.16),transparent_62%),linear-gradient(180deg,#030712_0%,#050b1a_55%,#020617_100%)]" />
-          <div className="absolute inset-0 grid-fade grid-drift opacity-[0.12]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/15 to-black/25" />
-        </>
-      )}
+      <div className="absolute inset-0 bg-[radial-gradient(1200px_700px_at_18%_10%,rgba(59,130,246,0.22),transparent_60%),radial-gradient(900px_650px_at_82%_18%,rgba(168,85,247,0.16),transparent_62%),linear-gradient(180deg,#030712_0%,#050b1a_55%,#020617_100%)]" />
+      <div className="absolute inset-0 grid-fade grid-drift opacity-[0.12]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/15 to-black/25" />
 
       <div className="absolute inset-0 opacity-[0.42]">
         <Canvas camera={{ position: [0, 0, 10], fov: 45 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}>

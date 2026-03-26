@@ -19,16 +19,6 @@
       linear-gradient(180deg, #030712 0%, #050b1a 55%, #020617 100%);
   }
 
-  :root[data-theme='light'] {
-    color-scheme: light;
-    --km-fg: rgba(9, 9, 11, 0.94);
-    --km-muted: rgba(9, 9, 11, 0.62);
-    --km-surface: rgba(0, 0, 0, 0.04);
-    --km-surface-strong: rgba(0, 0, 0, 0.06);
-    --km-ring: rgba(0, 0, 0, 0.10);
-    --km-grid-dot: rgba(15, 23, 42, 0.10);
-    --km-bg: #ffffff;
-  }
 
   html {
     scroll-behavior: smooth;

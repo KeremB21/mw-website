@@ -1,7 +1,7 @@
 import { createContext, useEffect, useMemo, useState } from 'react'
 
 export type Language = 'tr' | 'en'
-export type Theme = 'dark' | 'light'
+export type Theme = 'dark'
 
 type Dictionary = Record<string, string>
 
@@ -89,7 +89,6 @@ export const AppSettingsContext = createContext<{
   language: Language
   setLanguage: (l: Language) => void
   theme: Theme
-  setTheme: (t: Theme) => void
   t: (key: string) => string
 } | null>(null)
 
@@ -98,19 +97,16 @@ export function AppSettingsProvider({ children }: { children: React.ReactNode })
     const saved = localStorage.getItem('km_language')
     return saved === 'en' ? 'en' : 'tr'
   })
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('km_theme')
-    return saved === 'light' ? 'light' : 'dark'
-  })
+
+  const theme: Theme = 'dark'
 
   useEffect(() => {
     localStorage.setItem('km_language', language)
   }, [language])
 
   useEffect(() => {
-    localStorage.setItem('km_theme', theme)
-    document.documentElement.dataset.theme = theme
-  }, [theme])
+    document.documentElement.removeAttribute('data-theme')
+  }, [])
 
   const dict = language === 'en' ? EN : TR
   const value = useMemo(
@@ -118,7 +114,6 @@ export function AppSettingsProvider({ children }: { children: React.ReactNode })
       language,
       setLanguage,
       theme,
-      setTheme,
       t: (key: string) => dict[key] ?? key,
     }),
     [dict, language, theme],
